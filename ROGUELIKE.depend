@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1743445502 source:c:\users\bruno\desktop\nueva carpeta\facultad\programacion 2\ejercicios\roguelike\main.cpp
+	<iostream>
+
+1743445502 source:c:\users\bruno\desktop\roguelike\main.cpp
+	<iostream>
+
+1743445502 source:c:\users\bruno\desktop\proyectoroguelikeutn\main.cpp
+	<iostream>
+
+1792100824 source:c:\users\bruno\desktop\proyectoroguelikeutn\jugador.cpp
+	"Jugador.h"
+
+1791932483 c:\users\bruno\desktop\proyectoroguelikeutn\jugador.h
+	<string>
+
+1792102465 source:c:\users\bruno\desktop\proyectoroguelikeutn\enemigochico.cpp
+	"EnemigoChico.h"
+
+1792102526 c:\users\bruno\desktop\proyectoroguelikeutn\enemigochico.h
+	"Enemigo.h"
+	"Jugador.h"
+	<string>
+
+1792101231 c:\users\bruno\desktop\proyectoroguelikeutn\enemigo.h
+
