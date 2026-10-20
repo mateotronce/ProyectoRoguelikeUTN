@@ -9,17 +9,13 @@ private:
 
 public:
 
-    Enemigo(int _vida, int _danio, int _velocidad) {
-        Vida = _vida;
-        Danio = _danio;
-        Velocidad = _velocidad;
-    }
+    Enemigo(int _vida, int _danio, int _velocidad);
 
-    int getVida() { return Vida; }
-    int getDanio() { return Danio; }
-    int getVel() { return Velocidad; }
+    int getVida();
+    int getDanio();
+    int getVel();
 
-    void setVida(int _vida) { Vida = _vida; }
-    void setDanio(int _danio) { Danio = _danio; }
-    void setVel(int _vel) { Velocidad = _vel; }
+    void setVida(int _vida);
+    void setDanio(int _danio);
+    void setVel(int _vel);
 };
