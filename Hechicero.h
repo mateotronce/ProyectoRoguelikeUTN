@@ -1,11 +1,19 @@
 #pragma once
 #include "Enemigo.h"
-#include "Jugador.h"
-#include <string>
-class Hechicero : public Enemigo{
+#include "Proyectil.h"
+
+class Hechicero : public Enemigo {
+private:
+    float tiempoDesdeUltimoDisparo = 0.f;
 
 public:
     Hechicero();
-    void Ataque();
-};
 
+    void acercarse(float& x, float& y,
+                   float jugadorX, float jugadorY,
+                   float tiempoDeDisparo);
+
+    bool Ataque(float x, float y,
+                float jugadorX, float jugadorY,
+                float tiempoDeDisparo, Proyectil& proyectil);
+};

@@ -7,36 +7,45 @@ class Jugador: public sf::Drawable
 
 private:
     std::string NombreJugador;
-    int Vida = 100;
+
+    const int VidaMaxima = 100;
+    int Vida = VidaMaxima;
     int Danio = 10;
     float Velocidad = 5;
 
-    int VidaMaxima;
-    int CantidadProyectiles;
-    int Alcance;
-    int VelocidadProyectil;
-    int Cadencia;
+    int CantidadProyectiles = 0;
+    int Alcance = 0;
+    int VelocidadProyectil = 0;
+    int Cadencia = 0;
 
-    sf::Sprite _sprite;
     sf::Texture _texture;
-
+    sf::Sprite _sprite;
 
 
 public:
 
-///constructor///
+        ///constructor///
     Jugador();
 
-    /// Getters ///
+        /// Getters ///
+
     int getVida();
     int getDanio();
     float getVel();
+    int getCantidadProyectiles();
+    int getAlcance();
+    float getVelocidadProyectil();
+    int getCadencia();
 
+        /// Setters ///
 
-    /// Setters ///
     void setVida(int _vida);
-    void setDanio(int _danio);
-    void setVel(float _vel);
+    void setDanio(int _Danio);
+    void setVel(float _vel) ;
+    void setCantidadProyectiles(int _cantidadProyectiles);
+    void setAlcance(int _alcance);
+    void setVelocidadProyectil(float _velocidadProyectil);
+    void setCadencia(int _cadencia);
 
     /// sfml
 

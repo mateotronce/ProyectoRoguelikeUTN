@@ -1,6 +1,5 @@
-#include "Enemigo.h"
 #include "Acolito.h"
-#include <string>
+
 
 Acolito::Acolito()
     :Enemigo(4, 1, 2)

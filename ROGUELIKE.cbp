@@ -49,10 +49,13 @@
 		<Unit filename="Acolito.h" />
 		<Unit filename="Enemigo.cpp" />
 		<Unit filename="Enemigo.h" />
+		<Unit filename="Guardian.cpp" />
 		<Unit filename="Guardian.h" />
+		<Unit filename="Hechicero.cpp" />
 		<Unit filename="Hechicero.h" />
 		<Unit filename="Jugador.cpp" />
 		<Unit filename="Jugador.h" />
+		<Unit filename="Proyectil.h" />
 		<Unit filename="main.cpp" />
 		<Extensions />
 	</Project>
