@@ -1,10 +1,14 @@
 #include <SFML/Graphics.hpp>
 #include "Jugador.h"
 #include "Mira.h"
+#include "Generadordatos.h"
 
 
 int main()
 {
+
+    generarDatosIniciales();
+
     sf::RenderWindow window(sf::VideoMode({800, 600}), "Diez Sellos");
     window.setFramerateLimit(60);
 
