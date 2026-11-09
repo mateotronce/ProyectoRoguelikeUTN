@@ -5,6 +5,7 @@
 class Guardian : public Enemigo {
 
 public:
-    Guardian();
+    Guardian(const RegistroEnemigo& datos, sf::Vector2f pos);
+    void actualizar(float dt, const Jugador& jugador);
     void Ataque(Jugador& jugador);
 };

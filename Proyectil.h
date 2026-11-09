@@ -1,19 +1,31 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 
-struct Proyectil {
+// proyectil del jugador o de un enemigo
+// avanza en linea recta hasta recorrer su alcance o chocar con algo
+class Proyectil : public sf::Drawable {
+public:
+    // velocidad y alcance en pixeles
+    Proyectil(sf::Vector2f pos, sf::Vector2f direccion, float velocidad,
+              float alcance, int danio, bool esEnemigo);
 
-    float x = 0;
-    float y = 0;
+    void actualizar(float dt);
+    void desactivar();
 
-    float velocidadX = 0;
-    float velocidadY = 0;
+    bool estaActivo() const;
+    bool esEnemigo() const;
+    int getDanio() const;
+    sf::Vector2f getPosicion() const;
+    sf::FloatRect getCaja() const;
 
-    int danio = 0;
-    bool enemigo = false;
+private:
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
-    void mover(float tiempoDeDisparo) {
-        x += velocidadX * tiempoDeDisparo;
-        y += velocidadY * tiempoDeDisparo;
-    }
+    sf::CircleShape m_forma;
+    sf::Vector2f m_velocidad;   // pixeles por segundo
+    float m_alcance;            // pixeles que puede recorrer
+    float m_recorrido = 0.f;
+    int m_danio;
+    bool m_esEnemigo;
+    bool m_activo = true;
 };
-

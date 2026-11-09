@@ -1,9 +1,10 @@
 #pragma once
 #include "Objeto.h"
 #include <string>
+#include <SFML/Graphics.hpp>
 
 // Una recompensa tiene una mejora y, en los altares, una maldicion.
-class Recompensa {
+class Recompensa : public sf::Drawable {
 private:
     int m_id;
     std::string m_nombre;
@@ -11,6 +12,12 @@ private:
     int m_multiplicador;
     Objeto m_maldicion;
     bool m_tieneMaldicion;
+
+    sf::CircleShape m_forma;
+    sf::RectangleShape m_pedestal;
+
+    void prepararForma();
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 public:
     Recompensa();
@@ -20,6 +27,12 @@ public:
 
     int getId() const;
     std::string getNombre() const;
+    // Nombre y efectos, para mostrar en pantalla
+    std::string getDescripcion() const;
     bool tieneMaldicion() const;
     void aplicar(Jugador& jugador) const;
+
+    void setPosicion(sf::Vector2f pos);
+    sf::Vector2f getPosicion() const;
+    sf::FloatRect getCaja() const;
 };

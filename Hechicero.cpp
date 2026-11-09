@@ -1,57 +1,38 @@
 #include "Hechicero.h"
-#include <cmath>
+#include "Constantes.h"
 
 /// Constructor ///
-Hechicero::Hechicero()
-    : Enemigo(2, 1, 1) {
+Hechicero::Hechicero(const RegistroEnemigo& datos, sf::Vector2f pos)
+    : Enemigo(datos, pos, {32.f, 32.f}, sf::Color(120, 60, 200)) {
+}
+
+/// Se acerca y dispara en cada frame ///
+void Hechicero::actualizar(float dt, const Jugador& jugador, std::vector<Proyectil>& proyectiles) {
+    tiempoDesdeUltimoDisparo += dt;
+
+    acercarse(dt, jugador.getPosicion());
+    Ataque(jugador.getPosicion(), proyectiles);
 }
 
 /// Se acerca al jugador hasta quedar a 5 casilleros ///
-void Hechicero::acercarse(float& x, float& y,
-                         float jugadorX, float jugadorY,
-                         float tiempoDeDisparo) {
-    if (tiempoDeDisparo <= 0) return;
-
-    float dx = jugadorX - x;
-    float dy = jugadorY - y;
-    float distancia = std::sqrt(dx * dx + dy * dy);
-
-    if (distancia <= 5.f) return;
-
-    float movimiento = getVel() * tiempoDeDisparo;
-    if (movimiento > distancia - 5.f) {
-        movimiento = distancia - 5.f;
-    }
-
-    x += (dx / distancia) * movimiento;
-    y += (dy / distancia) * movimiento;
+void Hechicero::acercarse(float dt, sf::Vector2f posJugador) {
+    moverHacia(posJugador, dt, DistanciaAtaque * TamCasillero);
 }
 
-/// Dispara cada 2 segundos cuando esta a 5 casilleros o menos ///
-bool Hechicero::Ataque(float x, float y,
-                      float jugadorX, float jugadorY,
-                      float tiempoDeDisparo, Proyectil& proyectil) {
-    if (tiempoDeDisparo > 0) {
-        tiempoDesdeUltimoDisparo += tiempoDeDisparo;
-    }
+/// Dispara segun su cadencia cuando esta a 5 casilleros o menos ///
+bool Hechicero::Ataque(sf::Vector2f posJugador, std::vector<Proyectil>& proyectiles) {
+    const sf::Vector2f d = posJugador - getPosicion();
+    const float distancia = d.length();
 
-    float dx = jugadorX - x;
-    float dy = jugadorY - y;
-    float distancia = std::sqrt(dx * dx + dy * dy);
-
-    if (distancia == 0.f || distancia > 5.f || tiempoDesdeUltimoDisparo < 2.f) {
+    // Pequeño margen para que no deje de disparar por redondeo
+    if (distancia == 0.f || distancia > DistanciaAtaque * TamCasillero + 1.f)
         return false;
-    }
+    if (tiempoDesdeUltimoDisparo * 1000.f < getCadenciaDisparo())
+        return false;
 
-    // Valor provisorio: el documento no define la velocidad del disparo enemigo.
-    const float velocidadProyectil = 8.f;
-
-    proyectil.x = x;
-    proyectil.y = y;
-    proyectil.velocidadX = (dx / distancia) * velocidadProyectil;
-    proyectil.velocidadY = (dy / distancia) * velocidadProyectil;
-    proyectil.danio = getDanio();
-    proyectil.enemigo = true;
+    // Apunta a donde esta el jugador en este instante
+    proyectiles.emplace_back(getPosicion(), d, VelocidadProyectil * TamCasillero,
+                             AlcanceProyectil * TamCasillero, getDanio(), true);
 
     tiempoDesdeUltimoDisparo = 0.f;
     return true;

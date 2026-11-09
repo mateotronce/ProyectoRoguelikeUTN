@@ -1,4 +1,4 @@
-#include "GeneradorDatos.h"
+#include "Generadordatos.h"
 #include "Archivo.h"
 #include "Registros.h"
 
@@ -82,8 +82,8 @@ bool generarDatosIniciales()
     //                               id tipo N   S   E   O  opcional
     ok = archSalas.guardar(crearSala( 1, 1, -1, -1,  2, -1, false)) && ok;
     ok = archSalas.guardar(crearSala( 2, 2,  3, -1,  5,  1, false)) && ok;
-    ok = archSalas.guardar(crearSala( 3, 2, -1,  2,  4, -1, true))  && ok;
-    ok = archSalas.guardar(crearSala( 4, 4, -1, -1, -1,  3, true))  && ok;
+    ok = archSalas.guardar(crearSala( 3, 2,  4,  2, -1, -1, true))  && ok;
+    ok = archSalas.guardar(crearSala( 4, 4, -1,  3, -1, -1, true))  && ok;
     ok = archSalas.guardar(crearSala( 5, 2, -1,  6,  7,  2, false)) && ok;
     ok = archSalas.guardar(crearSala( 6, 3,  5, -1, -1, -1, true))  && ok;
     ok = archSalas.guardar(crearSala( 7, 2,  8, -1,  9,  5, false)) && ok;

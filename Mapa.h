@@ -21,7 +21,7 @@ private:
     bool buscarPosicion(int idSala, int& fila, int& columna) const;
 
 public:
-    // En la etapa 2, CargadorDatos leera Salas.dat y enviara sus registros.
+    // CargadorDatos::armarMapa le envia los registros de Salas.dat.
     bool cargar(const std::vector<RegistroSala>& registros);
     bool estaCargado() const;
 
